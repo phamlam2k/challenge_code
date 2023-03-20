@@ -128,7 +128,7 @@ export const MovieScreen = () => {
   return (
     <Layout>
       {movie && (
-        <div className="w-full">
+        <div className="w-full h-fit">
           <div className="w-full h-screen">
             <img
               className="absolute w-full object-cover h-full"
@@ -136,8 +136,8 @@ export const MovieScreen = () => {
               alt={movie.title ?? 'Image'}
             />
             <div className="absolute w-full h-full bg-[#000000a9] z-10" />
-            <div className="relative container lg:w-[1100px] mx-auto z-10 pt-[60px]">
-              <div className="flex justify-between items-center">
+            <div className="relative container lg:w-[1100px] mx-auto z-10 pt-[60px] max-sm:px-[10px]">
+              <div className="flex justify-between items-center flex-wrap">
                 <div className="text-[#FFFFFF]">
                   <p className="text-[32px]">{movie.title}</p>
                   <div className="flex items-center gap-[10px]">
@@ -146,7 +146,7 @@ export const MovieScreen = () => {
                     <div>{convertTime(movie.runtime)}</div>
                   </div>
                 </div>
-                <div className="flex gap-[30px]">
+                <div className="flex gap-[30px] max-md:mt-[20px]">
                   <div className="flex flex-col gap-[5px]">
                     <p className="text-[20px] text-[#808080] font-semibold text-center uppercase">The Rating</p>
                     <div className="flex items-center gap-[6px] text-[#808080] font-semibold">
@@ -166,21 +166,21 @@ export const MovieScreen = () => {
                 </div>
               </div>
               {videoMovie && (
-                <div className="mt-[30px] flex flex-wrap h-[450px] gap-[10px]">
+                <div className="mt-[30px] flex flex-wrap h-fit sm:h-[450px] gap-[10px]">
                   <img
-                    className="object-cover h-full"
+                    className="object-cover h-full max-md:hidden"
                     src={`${IMAGE_URL}/${IMAGE_WIDTH.W342}/${movie.poster_path}`}
                     alt={movie.title ?? 'Image'}
                   />
                   <iframe
                     src={`https://www.youtube.com/embed/${videoMovie[0].key}`}
-                    className="flex-1 h-full cursor-pointer"
+                    className="md:flex-1 max-md:w-full h-full cursor-pointer max-sm:h-[200px] mx-auto"
                     title={videoMovie[0].name}
                   />
                 </div>
               )}
-              <div className="mt-[15px]">
-                <div className="flex gap-[15px]">
+              <div className="mt-[15px] max-sm:px-[10px]">
+                <div className="flex gap-[15px] flex-wrap">
                   {movie.genres.map((genre: { id: number; name: string }) => (
                     <div
                       key={genre.id}
@@ -191,15 +191,15 @@ export const MovieScreen = () => {
                   ))}
                 </div>
                 <div className="mt-[10px] flex gap-[20px]">
-                  <div className="w-[calc(100%-350px)]">
-                    <p className="text-[#FFFFFF]">{movie.overview}</p>
+                  <div className="w-full md:w-[calc(100%-350px)] max-sm:block max-md:flex">
+                    <p className="text-[#FFFFFF] max-md:block max-sm:text-[12px]">{movie.overview}</p>
                     <div className="mt-[5px]">
                       <div className="flex items-center gap-[20px] text-[#FFFFFF] border-[#FFFFFF] border-b-[1px] pb-[5px]">
-                        <p className="text-[22px] font-semibold">Director: </p>
+                        <p className="text-[15px] md:text-[22px] font-semibold">Director: </p>
                         <div className="flex items-center gap-[10px]">
                           {departments.director.map((director: string, index: number) => (
                             <div className="flex items-center gap-[10px]">
-                              <p className="" key={index}>
+                              <p className="max-md:text-[10px]" key={index}>
                                 {director}
                               </p>
                               <div className="w-[2px] h-[2px] bg-[#FFFFFF]" />
@@ -208,11 +208,11 @@ export const MovieScreen = () => {
                         </div>
                       </div>
                       <div className="flex mt-[10px] items-center gap-[20px] text-[#FFFFFF] border-[#FFFFFF] border-b-[1px] pb-[5px]">
-                        <p className="text-[22px] font-semibold">Writers: </p>
+                        <p className="text-[15px] md:text-[22px] font-semibold">Writers: </p>
                         <div className="flex items-center gap-[10px]">
                           {departments.writer.map((writer: string, index: number) => (
                             <div className="flex items-center gap-[10px]">
-                              <p className="" key={index}>
+                              <p className="max-md:text-[10px]" key={index}>
                                 {writer}
                               </p>
                               <div className="w-[2px] h-[2px] bg-[#FFFFFF]" />
@@ -221,11 +221,11 @@ export const MovieScreen = () => {
                         </div>
                       </div>
                       <div className="flex mt-[10px] items-center gap-[20px] text-[#FFFFFF] border-[#FFFFFF] border-b-[1px] pb-[5px]">
-                        <p className="text-[22px] font-semibold">Stars: </p>
+                        <p className="text-[15px] md:text-[22px] font-semibold">Stars: </p>
                         <div>
                           {departments.actors.map((actor: string, index: number) => (
                             <div className="flex items-center gap-[10px]">
-                              <p className="" key={index}>
+                              <p className="max-md:text-[10px]" key={index}>
                                 {actor}
                               </p>
                               <div className="w-[2px] h-[2px] bg-[#FFFFFF]" />
@@ -235,8 +235,8 @@ export const MovieScreen = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="w-[350px] bg-[#FFFFFF] p-[10px]">
-                    <div className="text-[#000] text-[22px] text-center font-semibold">Co-operation Companies</div>
+                  <div className="w-[350px] bg-[#FFFFFF] p-[10px] max-md:hidden">
+                    <div className="text-[#000] text-[22px] text-center font-semibold ">Co-operation Companies</div>
                     <div className="flex gap-[30px] flex-wrap mt-[10px] items-center">
                       {movie.production_companies.map(
                         (company: { id: number; logo_path: string; name: string; origin_country: string }) => (
